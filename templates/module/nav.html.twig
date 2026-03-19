@@ -1,0 +1,15 @@
+<nav>
+    <div class="logo-container">
+        <img src="" alt="">
+    </div>
+    <div class="menu-container">
+        <a href="{{ path("app_home") }}">Nos Produits</a>
+    {% if connect %}
+        <a href="{{ path("app_command") }}">Mon panier</a>
+        <a href="{{ path("app_user_account") }}">Mon compte</a>
+        <a href="{{ path("app_logout") }}">Déconnexion</a>
+    {% else %}
+        <a href="{{ path("app_login") }}">Déconnexion</a>
+    {% endif %}
+    </div>
+</nav>

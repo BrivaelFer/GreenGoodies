@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}{{ include('module/nav.html.twig', {connect: (user !== null)}) }}{% endblock %}
+
+{% block body %} 
+<main id="home-page-content">
+    <div class="intro">
+        <div>
+            <h1>Bienvenue</h1>
+            <div>
+                <p>Découvrez notre univers de produits durables et éthiques pour une consommation responsable</p>
+                <p>Retrouvez des articles d’hygiène & beauté, des accessoires & boissons et du prêt à porter</p>
+            </div>
+        </div>
+        <img src="" alt="">
+    </div>
+    <div class="product"></div>
+    <div class="info">
+        <div class="conviction">
+            <div>
+                <div>
+                    <h4></h4>
+                    <p></p>
+                </div>
+            </div>
+            <img src="" alt="">
+        </div>
+        <div class="values">
+            <img src="" alt="">
+            <div>
+                <div>
+                    <h4></h4>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
