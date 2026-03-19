@@ -23,7 +23,7 @@ class Product
     private ?int $price = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $imgPath = null;
+    private ?string $img = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
@@ -82,14 +82,14 @@ class Product
         return $this;
     }
 
-    public function getImgPath(): ?string
+    public function getImg(): ?string
     {
-        return $this->imgPath;
+        return $this->img;
     }
 
-    public function setImgPath(string $imgPath): static
+    public function setImg(string $img): static
     {
-        $this->imgPath = $imgPath;
+        $this->img = $img;
 
         return $this;
     }
