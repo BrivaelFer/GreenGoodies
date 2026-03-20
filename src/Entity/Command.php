@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: CommandRepository::class)]
 class Command
 {
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_VALIDATED = 'validated';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -105,5 +108,25 @@ class Command
         $this->user = $user;
 
         return $this;
+    }
+
+    public function getTotalPrice(): float
+    {
+        /** @var int */
+        $total = 0;
+        foreach ($this->commandLines as $commandLine) {
+            $total += $commandLine->getTotalPrice();
+        }
+        return (float)($total / 100);
+    }
+
+    public function getCommandLineByProduct(Product $product): ?CommandLine
+    {
+        foreach ($this->commandLines as $commandLine) {
+            if($commandLine->getProduct() === $product){
+                return $commandLine;
+            }
+        }
+        return null;
     }
 }

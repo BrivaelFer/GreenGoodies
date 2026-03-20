@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class ProductController extends AbstractController
 {
@@ -37,9 +38,17 @@ final class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/api/products', name: 'api_procucts', methods:['GET'])]
+    #[Route('/api/products', name: 'api_products', methods:['GET'])]
+    #[IsGranted('FULLY_AUTHENTICATED')]
     public function showProductsList(ProductRepository $productRepository): JsonResponse
     {
-        return $this->json([],200);
+        /** @var User */
+        $user = $this->getUser();
+        if(!$user->isApiEnable()){
+            return $this->json(['error' => 'API access not enabled for this user'],403);
+        }
+        $products = $productRepository->findAll();
+
+        return $this->json($products,200);
     }
 }

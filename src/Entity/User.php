@@ -45,6 +45,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Command::class, mappedBy: 'user')]
     private Collection $commands;
 
+    #[ORM\Column(options: ['default' => false])]
+    private ?bool $apiEnable = null;
+
     public function __construct()
     {
         $this->commands = new ArrayCollection();
@@ -190,6 +193,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $command->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isApiEnable(): ?bool
+    {
+        return $this->apiEnable;
+    }
+
+    public function setApiEnable(bool $apiEnable): static
+    {
+        $this->apiEnable = $apiEnable;
 
         return $this;
     }

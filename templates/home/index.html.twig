@@ -3,37 +3,41 @@
 {% block nav %}{{ include('module/nav.html.twig', {connect: (user !== null)}) }}{% endblock %}
 
 {% block body %} 
-<main id="home-page-content">
-    <div class="intro">
-        <div>
-            <h1>Bienvenue</h1>
+    <main id="home-page-content">
+        <div class="intro">
             <div>
-                <p>Découvrez notre univers de produits durables et éthiques pour une consommation responsable</p>
-                <p>Retrouvez des articles d’hygiène & beauté, des accessoires & boissons et du prêt à porter</p>
-            </div>
-        </div>
-        <img src="" alt="">
-    </div>
-    <div class="product"></div>
-    <div class="info">
-        <div class="conviction">
-            <div>
+                <h1>Bienvenue</h1>
                 <div>
-                    <h4></h4>
-                    <p></p>
+                    <p>Découvrez notre univers de produits durables et éthiques pour une consommation responsable</p>
+                    <p>Retrouvez des articles d’hygiène & beauté, des accessoires & boissons et du prêt à porter</p>
                 </div>
             </div>
             <img src="" alt="">
         </div>
-        <div class="values">
-            <img src="" alt="">
-            <div>
+        <div class="product">
+            <h2>PRODUITS</h2>
+            <div class="product-list-container">
+            </div>
+        </div>
+        <div class="info">
+            <div class="conviction">
                 <div>
-                    <h4></h4>
-                    <p></p>
+                    <div>
+                        <h4></h4>
+                        <p></p>
+                    </div>
+                </div>
+                <img src="" alt="">
+            </div>
+            <div class="values">
+                <img src="" alt="">
+                <div>
+                    <div>
+                        <h4></h4>
+                        <p></p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 {% endblock %}
