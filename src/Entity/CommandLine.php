@@ -17,7 +17,7 @@ class CommandLine
     private ?int $quantity = null;
 
     #[ORM\Column]
-    private ?int $price = null;
+    private ?float $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'commandLines')]
     #[ORM\JoinColumn(nullable: false)]
@@ -44,20 +44,12 @@ class CommandLine
         return $this;
     }
 
-    /**
-     * Prix unitaire du produit au moment de la commande, en int pour les calcules, et en float pour l'affichage
-     * @param bool $float détermine si le prix doit être retourné en float ou en int
-     * @return float|int|null
-     */
-    public function getPrice(bool $float = false): int|float|null
+    public function getPrice(): ?float
     {
-        if($float){
-            return $this->price !== null ? (float)($this->price / 100) : null;
-        }
         return $this->price;
     }
 
-    public function setPrice(int $price): static
+    public function setPrice(float $price): static
     {
         $this->price = $price;
 
@@ -88,17 +80,4 @@ class CommandLine
         return $this;
     }
 
-    /**
-     * Prix total la ligne, en int pour les calcules, et en float pour l'affichage
-     * @param bool $float détermine si le prix doit être retourné en float ou en int
-     * @return float|int|null
-     */
-    public function getTotalPrice(bool $float = false): int|float|null
-    {
-        if($this->price === null || $this->quantity === null){
-            return null;
-        }
-        $total = $this->price * $this->quantity;
-        return $float ? (float)($total / 100) : $total;
-    }
 }

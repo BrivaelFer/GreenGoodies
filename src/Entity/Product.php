@@ -20,7 +20,7 @@ class Product
     private ?string $label = null;
 
     #[ORM\Column]
-    private ?int $price = null;
+    private ?float $price = null;
 
     #[ORM\Column(length: 255)]
     private ?string $img = null;
@@ -62,20 +62,12 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function getFloatPrice(): ?float
-    {
-        if(isset($this->price)) {
-            return (float)($this->price / 10);
-        }
-        return null;
-    }
-
-    public function setPrice(int $price): static
+    public function setPrice(float $price): static
     {
         $this->price = $price;
 

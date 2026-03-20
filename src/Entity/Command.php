@@ -110,23 +110,4 @@ class Command
         return $this;
     }
 
-    public function getTotalPrice(): float
-    {
-        /** @var int */
-        $total = 0;
-        foreach ($this->commandLines as $commandLine) {
-            $total += $commandLine->getTotalPrice();
-        }
-        return (float)($total / 100);
-    }
-
-    public function getCommandLineByProduct(Product $product): ?CommandLine
-    {
-        foreach ($this->commandLines as $commandLine) {
-            if($commandLine->getProduct() === $product){
-                return $commandLine;
-            }
-        }
-        return null;
-    }
 }

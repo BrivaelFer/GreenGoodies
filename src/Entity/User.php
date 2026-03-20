@@ -166,15 +166,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->commands;
     }
 
-    public function getActiveCommand(): ?Command
-    {
-        $command = end($this->commands);
-
-        if($command->getStatus() == "active") return $command;
-        
-        return null;
-    }
-
     public function addCommand(Command $command): static
     {
         if (!$this->commands->contains($command)) {
