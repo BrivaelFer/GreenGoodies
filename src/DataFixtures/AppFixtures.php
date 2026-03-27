@@ -14,11 +14,141 @@ class AppFixtures extends Fixture
 {
     public function __construct(private UserPasswordHasherInterface $passwordHasher)
     {}
+
     public function load(ObjectManager $manager): void
     {
-        
+        $datas = [
+            'users' => [
+                [
+                    'email' => 'admin@greengoodies.com',
+                    'name' => 'Dupont',
+                    'firstName' => 'Admin',
+                    'roles' => ['ROLE_ADMIN'],
+                    'password' => 'admin123'
+                ],
+                [
+                    'email' => 'user@greengoodies.com',
+                    'name' => 'Martin',
+                    'firstName' => 'Jean',
+                    'roles' => ['ROLE_USER'],
+                    'password' => 'user123'
+                ],
+                [
+                    'email' => 'marie@greengoodies.com',
+                    'name' => 'Bernard',
+                    'firstName' => 'Marie',
+                    'roles' => ['ROLE_USER'],
+                    'password' => 'marie123'
+                ]
+            ],
+            'products' => [
+                [
+                    'label' => 'Bouteille Réutilisable',
+                    'img' => 'bottle.jpg',
+                    'description' => 'Bouteille écologique fabriquée en matériau durable',
+                    'lightDescription' => 'Bouteille réutilisable eco-friendly',
+                    'enable' => true,
+                    'price' => 25.99
+                ],
+                [
+                    'label' => 'Sac à Provisions Biodégradable',
+                    'img' => 'bag.jpg',
+                    'description' => 'Sac biodégradable résistant et respectueux de l\'environnement',
+                    'lightDescription' => 'Sac écologique biodégradable',
+                    'enable' => true,
+                    'price' => 12.50
+                ],
+                [
+                    'label' => 'Brosse à Dents en Bambou',
+                    'img' => 'toothbrush.jpg',
+                    'description' => 'Brosse à dents naturelle en bambou avec poils compostables',
+                    'lightDescription' => 'Brosse à dents écologique en bambou',
+                    'enable' => true,
+                    'price' => 4.99
+                ],
+                [
+                    'label' => 'Savon Naturel Bio',
+                    'img' => 'soap.jpg',
+                    'description' => 'Savon 100% naturel et bio sans chimie agressive',
+                    'lightDescription' => 'Savon naturel bio premium',
+                    'enable' => true,
+                    'price' => 6.50
+                ]
+            ],
+            'commands' => [
+                [
+                    'user' => 0,
+                    'creationDate' => 'now',
+                    'status' => 'active'
+                ],
+                [
+                    'user' => 1,
+                    'creationDate' => '2026-02-20 14:45:00',
+                    'status' => 'validated'
+                ],
+                [
+                    'user' => 2,
+                    'creationDate' => 'now',
+                    'status' => 'active'
+                ]
+            ],
+            'commandLines' => [
+                [
+                    'command' => 0,
+                    'product' => 0,
+                    'quantity' => 2
+                ],
+                [
+                    'command' => 0,
+                    'product' => 2,
+                    'quantity' => 3
+                ],
+                [
+                    'command' => 1,
+                    'product' => 1,
+                    'quantity' => 1
+                ],
+                [
+                    'command' => 1,
+                    'product' => 3,
+                    'quantity' => 2
+                ],
+                [
+                    'command' => 2,
+                    'product' => 0,
+                    'quantity' => 1
+                ],
+                [
+                    'command' => 2,
+                    'product' => 1,
+                    'quantity' => 4
+                ]
+            ]
+        ];
+
+        foreach($this->makeEntitys($datas) as $entityGroup) {
+            foreach($entityGroup as $entity) {
+                $manager->persist($entity);
+            }
+        }
 
         $manager->flush();
+    }
+
+    /**
+     * Génère les entités
+     * @param array $datas
+     * @return array<array>
+     */
+    private function makeEntitys(array $datas): array
+    {
+        $users = $this->makeUsers($datas['users']); 
+        $products = $this->makeProducts($datas['products']);
+
+        $commands = $this->makeCommands($datas['commands'], $users);
+        $commandLines = $this->makeCommandLines($datas['commandLines'], $commands, $products);
+
+        return [$users, $products, $commands, $commandLines];
     }
 
     /**
@@ -39,6 +169,7 @@ class AppFixtures extends Fixture
                 $user,
                 $userData['password']
             ));
+            $user->setApiEnable(false);
             $users[] = $user;
         }
         return $users;
