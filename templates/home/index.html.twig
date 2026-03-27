@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block nav %}{{ include('module/nav.html.twig', {connect: (user !== null)}) }}{% endblock %}
+{% block nav %}{{ include('module/nav.html.twig', {connect: (app.user !== null)}) }}{% endblock %}
 
 {% block body %} 
     <main id="home-page-content">
@@ -14,17 +14,13 @@
             </div>
             <img src="" alt="">
         </div>
-        <div class="product">
-            <h2>PRODUITS</h2>
-            <div class="product-list-container">
-            </div>
-        </div>
+        {{ include('product/productList.html.twig', products) }}
         <div class="info">
             <div class="conviction">
                 <div>
                     <div>
-                        <h4></h4>
-                        <p></p>
+                        <h4>NOTRE CONVICTION</h4>
+                        <p>Chez GreenGoodies, nous croyons en un monde où le commerce peut être synonyme de bien-être pour la planète et ses habitants. Notre mission est de vous proposer une sélection rigoureuse de produits qui allient qualité, durabilité et éthique</p>
                     </div>
                 </div>
                 <img src="" alt="">
@@ -33,8 +29,10 @@
                 <img src="" alt="">
                 <div>
                     <div>
-                        <h4></h4>
-                        <p></p>
+                        <h4>NOS VALEURS</h4>
+                        <p>Durabilité : Nous sélectionnons soigneusement des produits qui respectent l'environnement et favorisent la durabilité.
+Éthique : Nous nous engageons à travailler avec des partenaires et des fournisseurs qui partagent nos valeurs éthiques.
+Écologie : Nous encourageons des pratiques respectueuses de l'écosystème et privilégions les matériaux écologiques.</p>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Green Goodies{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
         {% block stylesheets %}
         {% endblock %}
 
@@ -11,7 +12,7 @@
         {% endblock %}
     </head>
     <body>
-        <header>{% block nav %}{% endblock %}</header>
+        <header>{{ include('module/nav.html.twig', {connect: (app.user !== null)}) }}</header>
         {% block body %}{% endblock %}
         <footer>
             <span>© GreenGoodies - 2024</span>

@@ -1,0 +1,18 @@
+<div class="product">
+    <h2>PRODUITS</h2>
+    <div class="product-list-container">
+        {% for product in products %}
+            <article>
+                <figure>
+                    <img class='product-list-img' src="{{ asset('img/home_1.jpg') }}" alt="{{ product.label }}"><!-- {{ product.img }} -->
+                </figure>
+                <footer>
+                    <h3>{{ product.label }}</h3>
+                    <span>{{ product.lightDescription }}</span>
+                    <span>{{ product.price }}€</span>
+                    <a href="{{ path('app_product', {id: product.id}) }}">Voir le produit</a>
+                </footer>
+            </article>
+        {% endfor %}
+    </div>
+</div>
