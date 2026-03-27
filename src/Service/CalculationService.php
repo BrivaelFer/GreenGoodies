@@ -7,6 +7,20 @@ use App\Entity\CommandLine;
 
 class CalculationService
 {
+    public function getTolals(Command $command): array
+    {
+        $lines = [];
+
+        foreach ($command->getCommandLines() as $commandLine) {
+            $lines[$commandLine->getId()] = $this->calculateLineTotal($commandLine);
+        }
+
+        return [
+            'lines'=>$lines,
+            'total'=>$this->calculateCommandTotal($command)
+        ];
+    }
+
     public function calculateCommandTotal(Command $command): float
     {
         $total = 0;

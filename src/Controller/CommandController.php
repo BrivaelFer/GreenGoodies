@@ -5,56 +5,47 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Command;
 use App\Entity\Product;
-use App\Service\CommandService;
+use App\Service\CalculationService;
+use App\Service\Command\CommandReaderService;
+use App\Service\Command\CommandWriterService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_USER')]
 final class CommandController extends AbstractController
 {
-    private CommandService $commandService;
-
-    public function __construct() {
-        $this->commandService = new CommandService();
-    }
 
     #[Route('/command', name: 'app_command')]
-    public function showActiveCommand(): Response
+    public function showActiveCommand(#[CurrentUser]User $user, CommandReaderService $commandReader, CalculationService $calculationService): Response
     {
-        /** @var User */
-        $user = $this->getUser();
-        
-        $command = $this->commandService->getUserActiveCommand($user);
+        $command = $commandReader->getUserActiveCommand($user);
 
-        $totals = $this->commandService->getTolals($command);
+        $totals = $calculationService->getTolals($command);
 
         return $this->render('command/index.html.twig', [
-            'user' => $user,
             'command' => $command,
             'totals' => $totals
         ]);
     }
     
     #[Route('/command/add/{id}', name: 'app_command_add')]
-    public function addPructToCommand(Product $product, EntityManagerInterface $entityManager): Response
+    public function addPructToCommand(Product $product, #[CurrentUser]User $user, CommandWriterService $commandWriter): Response
     {
-        /** @var User */
-        $user = $this->getUser();
         
-        $this->commandService->addProductToCommand($product, $user, $entityManager);
+        $commandWriter->addProductToCommand($product, $user);
 
         return $this->redirectToRoute('app_command');
     }
 
     #[Route('/command/valide/{id}', name: 'app_command_valide')]
-    public function valideCommand(Command $command, EntityManagerInterface $entityManager): Response
+    public function valideCommand(Command $command, #[CurrentUser]User $user, CommandWriterService $commandWriter): Response
     {
-        /** @var User */
-        $user = $this->getUser();
-        if($user->getId() === $command->getUser()->getId()) {
-            $this->commandService->validateCommand($command, $entityManager);
-        }
+        $commandWriter->validateCommand($command, $user);
+
         return $this->redirectToRoute('app_command');
     }
 
