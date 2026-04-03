@@ -52,14 +52,9 @@ class CommandWriterService
         return false;
     }
 
-    public function deleteCommand(Command $command): bool
+    public function deleteCommand(Command $command): void
     {
-        try {
-            $this->entityManager->remove($command);
-            $this->entityManager->flush();
-            return true;
-        } catch(Exception $exe) {
-            return false;
-        }
+        $this->entityManager->remove($command);
+        $this->entityManager->flush();
     }
 }

@@ -6,7 +6,6 @@ use App\Entity\Command;
 use App\Entity\CommandLine;
 use App\Entity\Product;
 use App\Entity\User;
-use App\Service\CalculationService;
 
 final class CommandReaderService
 {

@@ -8,7 +8,6 @@ use App\Entity\Product;
 use App\Service\CalculationService;
 use App\Service\Command\CommandReaderService;
 use App\Service\Command\CommandWriterService;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -35,7 +34,6 @@ final class CommandController extends AbstractController
     #[Route('/command/add/{id}', name: 'app_command_add')]
     public function addPructToCommand(Product $product, #[CurrentUser]User $user, CommandWriterService $commandWriter): Response
     {
-        
         $commandWriter->addProductToCommand($product, $user);
 
         return $this->redirectToRoute('app_command');
@@ -50,10 +48,9 @@ final class CommandController extends AbstractController
     }
 
     #[Route('/command/delete/{id}', name: 'app_command_delete')]
-    public function deleteCommand(Command $command, EntityManagerInterface $entityManager): Response
+    public function deleteCommand(Command $command, CommandWriterService $commandWriterService): Response
     {
-        $entityManager->remove($command);
-        $entityManager->flush();
+        $commandWriterService->deleteCommand($command);
 
         return $this->redirectToRoute('app_command');
     }

@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegisterType;
+use App\Service\CalculationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/user', 'app_user')]
@@ -17,13 +18,19 @@ final class UserController extends AbstractController
 {
     #[Route('/', name: '_account')]
     #[IsGranted('ROLE_USER')]
-    public function account(): Response
+    public function account(#[CurrentUser]User $user, CalculationService $calculationService): Response
     {
-        /** @var User */
-        $user = $this->getUser();
+        $commands = $user->getCommands();
+
+        $totals = [];
+        foreach($commands as $command){
+            $totals[$command->getId()] = $calculationService->calculateCommandTotal($command);
+        }
+
         return $this->render('user/account.html.twig', [
             'user' => $user,
-            'commandes' => $user->getCommands()
+            'commands' => $commands,
+            'totals' => $totals,
         ]);
     }
 
@@ -59,5 +66,12 @@ final class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_home', ['deleted' => $deleted]);
+    }
+
+    #[Route('/activer-api', name:'_activat_api')]
+    #[IsGranted('ROLE_USER')]
+    public function activatApi(#[CurrentUser]User $user): Response
+    {
+        return $this->redirectToRoute('app_user_account');
     }
 }
