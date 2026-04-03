@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <main>
+        <figure>
+            <img src="" alt="">
+        </figure>
+        <div>
+            <h1>Inscription</h1>
+            <span>Tous les champ son obligatoires.</span>
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+            {{ form_end(form) }}
+            <a href="{{ path("app_login") }}">Déjà un compte ? Se connecter</a>
+        </div>
+    </main>
+{% endblock %}

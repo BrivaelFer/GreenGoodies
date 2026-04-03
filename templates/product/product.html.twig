@@ -4,7 +4,7 @@
 
 {% block body %}
     <main id="product-page-content">
-        <figure class="product-img">
+        <figure class="half-screen-img">
             <img src="{{ asset('img/home_1.jpg') }}" alt="Image {{ product.label }}">
         </figure>
         <div class="product-container">
@@ -14,12 +14,10 @@
                 <p>{{ product.description }}</p>
             </div>
             {% if user !== null %}
-                <a class="btn" href="{{ path("app_command_add", {id: product.id}) }}"></a>
+                <a class="btn" href="{{ path("app_command_add", {id: product.id}) }}">Ajouter aux panier</a>
             {% else %}
-            
+                <a class="btn" href="{{ path("app_login") }}">Connexion</a>
             {% endif %}
-            
-            
         </div>
     </main>
 {% endblock %}
