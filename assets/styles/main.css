@@ -1,8 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-
-.product-list-img {
-    width: 200px;
+html {
+    font-family: "Inter", sans-serif;
 }
-.half-screen-img img {
+
+body {
+    background-color: #FFFDF7;
+    font-size: 14px;
+    margin: 0;
+}
+
+figure {
+    margin: 0;
+}
+
+figure > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #F6F5F0;
+    height: 80px;
+    padding: 0 25px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.intro {
+    width: 100%;
+    height: 751px;
+    display: flex;
+    background-color: #E8F0E3;
+}
+
+.intro-text {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
+
+.intro-text p {
+    font-size: 18px;
+}
+
+.intro-text h1 {
+    font-size: 64px;
+    font-weight: 500;
+    margin: 20px;
+}
+
+.intro-text * {
+    width: 362px;
+}
+
+.logo-container img {
+    width: 124px;
+}
+
+.menu-container {
+    display: flex;
+    gap: 30px;
+}
+
+.product-list-img, .product-list-img>img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+.half-screen-img {
+    width: 50%;
+}
+.half-screen-img > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-list-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.product-card > footer, .product-card-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-card-info > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px
+}
+
+.product-card-info h3 {
+    margin-bottom: 10px;
+}
+
+.product-card > footer > a {
+    width: 100%;
+    font-weight: 400;
+    text-align: center;
+    padding: 25px 0;
+}
+
+.product-card-desc {
+    color: #666666;
+}
+
+.conviction {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    background-color: #EBE3D3;
+}
+
+.conviction-text, .values-text {
+    max-width: 425px;
+}
+
+.conviction > div {
+    display: flex;
+    align-items: end;
+    padding: 20px;
+}
+
+.values {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background-color: #E8F0E3;
+}
+
+.values > div {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    padding: 20px;
+}
+
+.conviction h2, .values h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.products h2 {
+    font-weight: 500;
+    margin: 50px;
+}
+
+.products h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.base-footer {
+    height: 81px;
+    width: 1fr;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 25px;
 }

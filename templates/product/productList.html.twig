@@ -1,15 +1,19 @@
-<div class="product">
-    <h2>PRODUITS</h2>
+<div class="products">
+    <h2>NOS PRODUITS</h2>
     <div class="product-list-container">
         {% for product in products %}
-            <article>
-                <figure>
-                    <img class='product-list-img' src="{{ asset('img/home_1.jpg') }}" alt="{{ product.label }}"><!-- {{ product.img }} -->
+            <article class="product-card">
+                <figure class='product-list-img'>
+                    <img src="{{ asset('img/home_1.jpg') }}" alt="{{ product.label }}"><!-- {{ product.img }} -->
                 </figure>
                 <footer>
-                    <h3>{{ product.label }}</h3>
-                    <span>{{ product.lightDescription }}</span>
-                    <span>{{ product.price }}€</span>
+                    <div class="product-card-info">
+                        <h3>{{ product.label }}</h3>
+                        <div>
+                            <span class="product-card-desc">{{ product.lightDescription }}</span>
+                            <span>{{ product.price|number_format(2, ',', '.') }}€</span>
+                        </div>
+                    </div>
                     <a href="{{ path('app_product', {id: product.id}) }}">Voir le produit</a>
                 </footer>
             </article>

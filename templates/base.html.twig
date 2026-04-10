@@ -14,7 +14,7 @@
     <body>
         <header>{{ include('module/nav.html.twig', {connect: (app.user !== null)}) }}</header>
         {% block body %}{% endblock %}
-        <footer>
+        <footer class="base-footer">
             <span>© GreenGoodies - 2024</span>
         </footer>
     </body>
