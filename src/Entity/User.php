@@ -46,7 +46,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $commands;
 
     #[ORM\Column(options: ['default' => false])]
-    private ?bool $apiEnable = null;
+    private bool $apiEnable = false;
 
     public function __construct()
     {
