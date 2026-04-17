@@ -4,19 +4,24 @@
 
 {% block body %}
     <main id="product-page-content">
-        <figure class="half-screen-img">
+        <figure>
             <img src="{{ asset('img/home_1.jpg') }}" alt="Image {{ product.label }}">
         </figure>
         <div class="product-container">
-            <div class"product-info">
+            <div class="product-info default-width">
                 <h1>{{ product.label }}</h1>
-                <span>{{ product.price|number_format(2, ',', '.') }}</span>
-                <p>{{ product.description }}</p>
+                <span class="price">{{ product.price|number_format(2, ',', '.') }}€</span>
+                <div class="description">
+                    <h2>Description</h2>
+                    <div>
+                        {{ product.description }}
+                    </div>
+                </div>
             </div>
             {% if user !== null %}
-                <a class="btn" href="{{ path("app_command_add", {id: product.id}) }}">Ajouter aux panier</a>
+                <a class="btn" href="{{ path("app_command_add", {id: product.id}) }}"><span>Ajouter aux panier</span></a>
             {% else %}
-                <a class="btn" href="{{ path("app_login") }}">Connexion</a>
+                <a class="btn" href="{{ path("app_login") }}"><span>Connexion</span></a>
             {% endif %}
         </div>
     </main>
