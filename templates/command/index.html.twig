@@ -6,6 +6,7 @@
 <main id="command-container">
     <h1>Mon panier</h1>
     <div class="command-content">
+        {% if null !== command %}
         <a id="delete-command" href="{{ path('app_command_delete', {id: command.id}) }}">x Vider le panier</a>
         <div class="product-list">
             {% for line in command.commandLines %}
@@ -30,7 +31,13 @@
                 <span>Frais de livraison : Offert</span>
             </div>
         </div>
-        <a class="btn" href="">Valider la commande</a>
+        <a class="btn" href="{{ path('app_command_valide', {id: command.id}) }}">Valider la commande</a>
+        {% else %}
+            <div class="empty-command">
+                <h3>Votre panier est actuellement vide</h3>
+            </div>
+            <a class="btn" href="{{ path('app_home') }}">Nos produits</a>
+        {% endif %}
     </div>
 </main>
 {% endblock %}

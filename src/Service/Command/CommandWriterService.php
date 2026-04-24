@@ -23,6 +23,8 @@ class CommandWriterService
         if (!$command) {
             $command = new Command();
             $command->setUser($user);
+            $command->setCreationDate(new \DateTime());
+            $command->setStatus(Command::STATUS_ACTIVE);
             $this->entityManager->persist($command);
         }
 

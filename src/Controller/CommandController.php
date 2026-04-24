@@ -23,7 +23,11 @@ final class CommandController extends AbstractController
     {
         $command = $commandReader->getUserActiveCommand($user);
 
-        $totals = $calculationService->getTolals($command);
+        $totals = null;
+        if (null !== $command) {
+            $totals = $calculationService->getTolals($command);
+        }
+        
 
         return $this->render('command/index.html.twig', [
             'command' => $command,
