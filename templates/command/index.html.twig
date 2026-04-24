@@ -3,28 +3,32 @@
 {% block title %}Mon panier{% endblock %}
 
 {% block body %}
-<main class="command-container">
+<main id="command-container">
     <h1>Mon panier</h1>
-    <div>
-        <a href="{{ path('app_command_delete', {id: command.id}) }}">x Vider le panier</a>
+    <div class="command-content">
+        <a id="delete-command" href="{{ path('app_command_delete', {id: command.id}) }}">x Vider le panier</a>
         <div class="product-list">
             {% for line in command.commandLines %}
-                <div>
+                <div class="command-product">
                     <figure>
-                        <img src="" alt="">
+                        <img src="{{ asset('img/home_1.jpg') }}" alt="">
                     </figure>
-                    <div class="product-info">
+                    <div class="command-product-info">
                         <h3 class="label">{{ line.product.label }}</h3>
                         <span class="quantity">Quantité : {{ line.quantity }}</span>
-                        <span class="product-price">{{ line.price }}€</span>
-                        <span class="product-total">{{ totals.lines[line.id] }}€</span>
+                        <div>
+                            <span class="product-price">{{ line.price|number_format(2, ',', '.') }}€</span>
+                            <span class="product-total"><span class="total-label">Total produit:</span> {{ totals.lines[line.id]|number_format(2, ',', '.') }}€</span>
+                        </div>
                     </div>
                 </div> 
             {% endfor %}
         </div>
         <div class="command-total">
-            <span class="command-total-value">Total panier : {{ totals.total }}€</span>
-            <span>Frais de livraison : Offert</span>
+            <div>
+                <span class="command-total-value"><span class="total-label">Total panier:</span> {{ totals.total|number_format(2, ',', '.') }}€</span>
+                <span>Frais de livraison : Offert</span>
+            </div>
         </div>
         <a class="btn" href="">Valider la commande</a>
     </div>
