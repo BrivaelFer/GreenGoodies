@@ -14,6 +14,7 @@ body {
     min-width: 100%;
 }
 
+
 main {
     flex: 1;
 }
@@ -40,6 +41,22 @@ nav {
 a {
     text-decoration: none;
     color: black;
+}
+
+form > div > div {
+    display: flex;
+    flex-direction: column;
+    margin: 25px 0;
+    gap: 10px;
+}
+
+form label {
+    color: #666666;
+}
+form input {
+    width: 100%;
+    height: 67px;
+    border: 1px solid #666666;
 }
 
 .intro {
@@ -187,7 +204,7 @@ a {
     justify-items: end;
 }
 
-.default-width, .btn {
+.default-width, .btn, .form-container {
     width: 465px;
 }
 
@@ -199,6 +216,10 @@ a {
     justify-content: center;
     align-items: center;
     height: 77px;
+}
+
+.btn:hover {
+    background-color: black;
 }
 
 #product-page-content {
@@ -231,4 +252,51 @@ a {
 
 .description {
     color: #666666;
+}
+.form-page-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#form-page-content > * {
+    height: 100%;
+}
+
+.connect-interface {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.connect-interface > a {
+    text-decoration: underline;
+}
+
+.form-container, .form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.check-container {
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 50px;
+}
+
+.check-container input {
+    width: 19px;
+    height: 19px;
+}
+
+#regiter-page > figure {
+    aspect-ratio: 734/1104;
+}
+
+#login-page > figure {
+    aspect-ratio: 734/988;
+}
+
+.form-container {
+    margin-top: 80px;
 }

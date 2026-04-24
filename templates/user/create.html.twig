@@ -3,16 +3,19 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <main>
+    <main id="regiter-page" class="form-page-content">
         <figure>
-            <img src="" alt="">
+            <img src="{{ asset('img/illu3.jpg') }}" alt="illu">
         </figure>
-        <div>
-            <h1>Inscription</h1>
-            <span>Tous les champ son obligatoires.</span>
-            {{ form_start(form) }}
-                {{ form_widget(form) }}
-            {{ form_end(form) }}
+        <div class="connect-interface">
+            <div class="form-container">
+                <h1>Inscription</h1>
+                <span>Tous les champ son obligatoires.</span>
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+            
             <a href="{{ path("app_login") }}">Déjà un compte ? Se connecter</a>
         </div>
     </main>

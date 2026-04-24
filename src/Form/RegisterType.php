@@ -29,6 +29,9 @@ class RegisterType extends AbstractType
             ])
             ->add('check', CheckboxType::class, [
                 'label' => "J'accepte les CGU de GreenGoodies",
+                'row_attr' => [
+                    'class' => 'check-container',
+                ],
                 'required' => true,
                 'mapped' => false
             ])
