@@ -3,38 +3,37 @@
 {% block title %}Mon compte{% endblock %}
 
 {% block body %}
-<main id="account-contant">
+<main id="account-container">
     <h1>Mon compte</h1>
-    <div>
+    <div id="account-contant">
         <div class="commands-list">
-            <h2>Mes commandes</h2>
-                <table>
-                    <thead>
+            <h2 class="default-width">Mes commandes</h2>
+            <table class="default-width">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Date</th>
+                        <th>Prix</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for command in commands %}
                         <tr>
-                            <th>N°</th>
-                            <th>Date</th>
-                            <th>Prix</th>
+                            <td>{{ command.id }}</td>
+                            <td>{{ command.creationDate|date('d/m/Y') }}</td>
+                            <td>{{ totals[command.id]|number_format(2, ',', '.') }}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {% for command in commands %}
-                            <tr>
-                                <td>{{ command.id }}</td>
-                                <td>{{ command.creationDate|date('d/m/Y') }}</td>
-                                <td>{{ totals[command.id] }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                    
-                </table>
-            
+                    {% endfor %}
+                </tbody>
+                
+            </table>
         </div>
         <div>
-            <h2>Mon accès API</h2>
-            <a href="{{ path('app_user_activat_api') }}">{{ user.apiEnable ? "Désactiver mon accès API" : "Activer mon accès API" }}</a>
+            <h2 class="default-width">Mon accès API</h2>
+            <a class="btn" href="{{ path('app_user_activat_api') }}">{{ user.apiEnable ? "Désactiver mon accès API" : "Activer mon accès API" }}</a>
         </div>
         <div>
-            <a href="{{ path('app_user_delete', {id: user.id}) }}">Supprimer mon compte</a>
+            <a class="btn" href="{{ path('app_user_delete', {id: user.id}) }}">Supprimer mon compte</a>
         </div>
     </div>
 </main>
