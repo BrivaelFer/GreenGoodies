@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Ignore;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -38,6 +39,7 @@ class Product
      * @var Collection<int, CommandLine>
      */
     #[ORM\OneToMany(targetEntity: CommandLine::class, mappedBy: 'product')]
+    #[Ignore]
     private Collection $commandLines;
 
     public function __construct()

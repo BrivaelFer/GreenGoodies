@@ -72,8 +72,13 @@ final class UserController extends AbstractController
 
     #[Route('/activer-api', name:'_activat_api')]
     #[IsGranted('ROLE_USER')]
-    public function activatApi(#[CurrentUser]User $user): Response
+    public function activatApi(#[CurrentUser]User $user, EntityManagerInterface $entityManager): Response
     {
+        $user->setApiEnable(!$user->isApiEnable());
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
         return $this->redirectToRoute('app_user_account');
     }
 }
