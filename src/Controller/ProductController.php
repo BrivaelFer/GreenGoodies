@@ -35,7 +35,7 @@ final class ProductController extends AbstractController
     }
 
     #[Route('/api/products', name: 'api_products', methods:['GET'])]
-    #[IsGranted('FULLY_AUTHENTICATED')]
+    #[IsGranted('ROLE_USER')]
     public function showProductsList(#[CurrentUser]User $user, ProductRepository $productRepository): JsonResponse
     {
         if(!$user->isApiEnable()){
