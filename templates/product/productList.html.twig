@@ -4,7 +4,7 @@
         {% for product in products %}
             <article class="product-card">
                 <figure class='product-list-img'>
-                    <img src="{{ asset('img/home_1.jpg') }}" alt="{{ product.label }}"><!-- {{ product.img }} -->
+                    <img src="{{ ('img/product/' ~ product.img) | imagine_filter('home_product') }}" alt="{{ product.label }}"><!-- {{ product.img }} -->
                 </figure>
                 <footer>
                     <div class="product-card-info">

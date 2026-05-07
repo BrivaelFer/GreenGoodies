@@ -13,7 +13,7 @@
                 </div>
             </div>
             <figure class="half-screen-img">
-                <img src="{{ asset('img/home_1.jpg') }}" alt="Bienvenue illustration">
+                <img src="{{ ('img/home_1.jpg') | imagine_filter('half_page') }}" alt="Bienvenue illustration">
             </figure>
         </div>
         {{ include('product/productList.html.twig', products) }}
@@ -26,12 +26,12 @@
                     </div>
                 </div>
                 <figure>
-                    <img src="{{ asset('img/illu1.jpg') }}" alt="illu1">
+                    <img src="{{ ('img/illu1.jpg') | imagine_filter('home_bottom') }}" alt="illu1">
                 </figure>
             </div>
             <div class="values">
                 <figure>
-                    <img src="{{ asset('img/illu2.jpg') }}" alt="illu2">
+                    <img src="{{ ('img/illu2.jpg') | imagine_filter('home_bottom') }}" alt="illu2">
                 </figure>
                 <div>
                     <div class="values-text">

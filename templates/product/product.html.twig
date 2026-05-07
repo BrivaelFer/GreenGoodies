@@ -5,7 +5,7 @@
 {% block body %}
     <main id="product-page-content">
         <figure>
-            <img src="{{ asset('img/home_1.jpg') }}" alt="Image {{ product.label }}">
+            <img src="{{ ('img/product/' ~ product.img) | imagine_filter('half_page') }}" alt="Image {{ product.label }}">
         </figure>
         <div class="product-container">
             <div class="product-info default-width">

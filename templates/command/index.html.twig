@@ -12,7 +12,7 @@
             {% for line in command.commandLines %}
                 <div class="command-product">
                     <figure>
-                        <img src="{{ asset('img/home_1.jpg') }}" alt="">
+                        <img src="{{ ('img/product/' ~ line.product.img) | imagine_filter('command_procuct') }}" alt="">
                     </figure>
                     <div class="command-product-info">
                         <h3 class="label">{{ line.product.label }}</h3>

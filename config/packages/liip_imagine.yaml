@@ -1,0 +1,56 @@
+liip_imagine:
+
+  loaders:
+    default:
+      filesystem:
+        data_root: '%kernel.project_dir%/assets'
+  
+
+  # configure resolvers
+  resolvers:
+
+  # setup the default resolver
+    default:
+
+      # use the default web path
+      web_path: ~
+
+  # your filter sets are defined here
+  filter_sets:
+
+    home_product:
+
+      # adjust the image quality to 75%
+      quality: 75
+
+      # list of transformations to apply (the "filters")
+      filters:
+
+        thumbnail: { size: [480, 480], position: center, mode: outbound }
+    
+    home_bottom:
+      quality: 75
+
+      filters:
+        thumbnail: 
+          size: [487,646] 
+          position: center
+          mode: outbound
+    
+    half_page:
+      quality: 75
+
+      filters:
+        thumbnail: 
+          size: [734] 
+          position: center
+          mode: outbound
+
+    command_procuct:
+      quality: 75
+
+      filters:
+        thumbnail: 
+          size: [142, 142] 
+          position: center
+          mode: outbound
