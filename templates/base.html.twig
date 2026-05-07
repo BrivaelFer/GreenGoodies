@@ -5,10 +5,11 @@
         <title>{% block title %}Green Goodies{% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
         {% block stylesheets %}
+            {{ encore_entry_link_tags('main') }}
         {% endblock %}
 
         {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
