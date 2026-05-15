@@ -1,0 +1,13 @@
+{# Template page erreur #}
+{% extends "base.html.twig" %}
+
+{% block titre %}Erreur {{ code }}{% endblock %}
+
+{% block body %}
+<main id="error-container">
+    <div id="error-content">
+        <h1>Erreur {{ code }}</h1>
+        <p>{{message}}</p>
+    </div>
+</main>
+{% endblock %}

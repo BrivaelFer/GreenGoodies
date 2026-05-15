@@ -407,7 +407,7 @@ form input {
     padding: 30px 0;
 }
 
-#account-container {
+#account-container, #error-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -415,7 +415,7 @@ form input {
     padding: 50px 0;
 }
 
-#account-contant {
+#account-content {
     display: flex;
     flex-direction: column;
     width: 604px;
@@ -423,7 +423,7 @@ form input {
     margin-bottom: 50px;
 }
 
-#account-contant > div {
+#account-content > div {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -458,6 +458,17 @@ form input {
     margin-bottom: 10px;
 }
 
-#account-contant h2 {
+#account-content h2 {
     margin-top: 0;
+}
+
+#error-content {
+    width: 604px;
+    background-color: white;
+    padding: 60px;
+}
+
+#error-content > div {
+    font-size: 64px;
+    font-weight: 600;
 }
