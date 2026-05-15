@@ -20,6 +20,12 @@ class ApiUserChecker implements UserCheckerInterface
         $this->checkApiAccess($user);
     }
 
+    /**
+     * Vérifi si l'utilisateur à active l'accès API
+     * @param UserInterface $user
+     * @throws CustomUserMessageAuthenticationException
+     * @return void
+     */
     private function checkApiAccess(UserInterface $user): void
     {
         if (!$user instanceof User) {

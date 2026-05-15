@@ -23,6 +23,7 @@ final class UserController extends AbstractController
     {
         $commands = $user->getCommands();
 
+        // Récupère le prix total de chaque commande
         $totals = [];
         foreach($commands as $command){
             $totals[$command->getId()] = $calculationService->calculateCommandTotal($command);
@@ -40,6 +41,9 @@ final class UserController extends AbstractController
     {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
+
+        // Vérifi si le formulaire envoyé est conforme, quand a été envoyé. 
+        // Si oui renvoie à la page de connexion
         if($request->isMethod('POST')){
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()){
@@ -61,6 +65,7 @@ final class UserController extends AbstractController
     public function delete(User $userToDelete, EntityManagerInterface $entityManager): Response
     {
         $deleted = false;
+        // Vérifi si l'utilisateur connecté à le droit de supprimé le compte demandé.
         if($this->isGranted('ROLE_ADMIN') || $this->getUser()->getUserIdentifier() === $userToDelete->getId()){
             $entityManager->remove($userToDelete);
             $entityManager->flush();

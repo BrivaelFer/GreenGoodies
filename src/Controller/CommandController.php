@@ -19,7 +19,11 @@ final class CommandController extends AbstractController
 {
 
     #[Route('/command', name: 'app_command')]
-    public function showActiveCommand(#[CurrentUser]User $user, CommandReaderService $commandReader, CalculationService $calculationService): Response
+    public function showActiveCommand(
+        #[CurrentUser]User $user, 
+        CommandReaderService $commandReader, 
+        CalculationService $calculationService
+    ): Response 
     {
         $command = $commandReader->getUserActiveCommand($user);
 
@@ -28,7 +32,6 @@ final class CommandController extends AbstractController
             $totals = $calculationService->getTolals($command);
         }
         
-
         return $this->render('command/index.html.twig', [
             'command' => $command,
             'totals' => $totals
@@ -52,9 +55,9 @@ final class CommandController extends AbstractController
     }
 
     #[Route('/command/delete/{id}', name: 'app_command_delete')]
-    public function deleteCommand(Command $command, CommandWriterService $commandWriterService): Response
+    public function deleteCommand(Command $command, #[CurrentUser]User $user, CommandWriterService $commandWriterService): Response
     {
-        $commandWriterService->deleteCommand($command);
+        $commandWriterService->deleteCommand($command, $user);
 
         return $this->redirectToRoute('app_command');
     }

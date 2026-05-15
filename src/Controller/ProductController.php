@@ -38,6 +38,7 @@ final class ProductController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function showProductsList(#[CurrentUser]User $user, ProductRepository $productRepository): JsonResponse
     {
+        // Retourn un erreur si l'utilisateur n'a pas activé l'accès API
         if(!$user->isApiEnable()){
             return $this->json(['error' => 'API access not enabled for this user'],403);
         }

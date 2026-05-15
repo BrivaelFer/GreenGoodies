@@ -7,6 +7,7 @@
     <h1>Mon compte</h1>
     <div id="account-contant">
         <div class="commands-list">
+            {# historique des commandes de l'utilisateur #}
             <h2 class="default-width">Mes commandes</h2>
             <table class="default-width">
                 <thead>
@@ -29,10 +30,12 @@
             </table>
         </div>
         <div>
+            {# Gestion de l'accès API #}
             <h2 class="default-width">Mon accès API</h2>
             <a class="btn" href="{{ path('app_user_activat_api') }}">{{ user.apiEnable ? "Désactiver mon accès API" : "Activer mon accès API" }}</a>
         </div>
         <div>
+            {# Suppression de compte #}
             <a class="btn" href="{{ path('app_user_delete', {id: user.id}) }}">Supprimer mon compte</a>
         </div>
     </div>

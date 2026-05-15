@@ -1,13 +1,16 @@
+{# Template de la page d'inscription #}
 {% extends "base.html.twig" %}
 
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
     <main id="regiter-page" class="form-page-content">
+        {# illustration #}
         <figure>
             <img src="{{ 'img/illu3.jpg' | imagine_filter('half_page') }}" alt="illu">
         </figure>
         <div class="connect-interface">
+            {# interface de création de compte #}
             <div class="form-container">
                 <h1>Inscription</h1>
                 <span>Tous les champ son obligatoires.</span>

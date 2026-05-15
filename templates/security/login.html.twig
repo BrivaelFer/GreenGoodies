@@ -1,13 +1,16 @@
+{# Template de la page de connexion #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
     <main id="login-page" class="form-page-content">
+        {# illustration #}
         <figure>
             <img src="{{ 'img/illu1.jpg' | imagine_filter('half_page') }}" alt="Login image">
         </figure>
         <div class="connect-interface">
+            {# interface de création de connexion #}
             <div class="form-container">
                 <h1>Connexion</h1>
                 <form method="post">

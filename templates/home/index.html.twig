@@ -1,6 +1,5 @@
+{# Template de la page d'accueil #}
 {% extends 'base.html.twig' %}
-
-{% block nav %}{{ include('module/nav.html.twig', {connect: (app.user !== null)}) }}{% endblock %}
 
 {% block body %} 
     <main id="home-page-content">
@@ -16,6 +15,7 @@
                 <img src="{{ ('img/home_1.jpg') | imagine_filter('half_page') }}" alt="Bienvenue illustration">
             </figure>
         </div>
+        {# Import de la liste de produits #}
         {{ include('product/productList.html.twig', products) }}
         <div class="info">
             <div class="conviction">

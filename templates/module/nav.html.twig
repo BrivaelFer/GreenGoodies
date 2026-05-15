@@ -1,9 +1,13 @@
+{# Template de la barre de naviguation #}
 <nav>
     <div class="logo-container">
-        <img src="{{ asset('img/greenGoodiesLogo.svg') }}" alt="logo">
+        <a href="{{ path("app_home") }}">
+            <img src="{{ asset('img/greenGoodiesLogo.svg') }}" alt="logo">
+        </a>
     </div>
     <div class="menu-container">
         <a href="{{ path("app_home") }}">Nos Produits</a>
+    {# Changement en fonction de si l'utilisateur est connecté ou non #}
     {% if connect %}
         <a href="{{ path("app_command") }}">Mon panier</a>
         <a href="{{ path("app_user_account") }}">Mon compte</a>

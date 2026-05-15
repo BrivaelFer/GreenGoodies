@@ -1,13 +1,16 @@
+{# Template de la page produit #}
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ product.label }}{% endblock %}
 
 {% block body %}
     <main id="product-page-content">
+        {# Image produit #}
         <figure>
             <img src="{{ ('img/product/' ~ product.img) | imagine_filter('half_page') }}" alt="Image {{ product.label }}">
         </figure>
         <div class="product-container">
+            {# Info produit #}
             <div class="product-info default-width">
                 <h1>{{ product.label }}</h1>
                 <span class="price">{{ product.price|number_format(2, ',', '.') }}€</span>
@@ -18,6 +21,7 @@
                     </div>
                 </div>
             </div>
+            {# Boutton pour ajouter un produit ou se connecter si l'utilisateur n'est pas connecté #}
             {% if user !== null %}
                 <a class="btn" href="{{ path("app_command_add", {id: product.id}) }}"><span>Ajouter aux panier</span></a>
             {% else %}

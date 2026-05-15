@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Green Goodies{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
         {% block stylesheets %}
             {{ encore_entry_link_tags('main') }}
         {% endblock %}
@@ -13,6 +12,7 @@
         {% endblock %}
     </head>
     <body>
+        {# import du template de nav #}
         <header>{{ include('module/nav.html.twig', {connect: (app.user !== null)}) }}</header>
         {% block body %}{% endblock %}
         <footer class="base-footer">
