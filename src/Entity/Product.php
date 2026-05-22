@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Ignore;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -18,18 +19,22 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[SerializedName('name')]
     private ?string $label = null;
 
     #[ORM\Column]
     private ?float $price = null;
 
     #[ORM\Column(length: 255)]
+    #[SerializedName('picture')]
     private ?string $img = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[SerializedName('fullDescription')]
     private ?string $description = null;
 
     #[ORM\Column(length: 1000)]
+    #[SerializedName('shortDescription')]
     private ?string $lightDescription = null;
 
     #[ORM\Column]
