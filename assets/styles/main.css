@@ -472,3 +472,23 @@ form input {
     font-size: 64px;
     font-weight: 600;
 }
+
+/* Styles pour les erreurs de formulaire */
+.form-errors {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+    color: #dc3545;
+    font-size: 0.875rem;
+}
+
+.form-errors li {
+    margin: 0.25rem 0;
+}
+
+/* Surround input fields with errors in red border */
+.has-error input,
+.has-error textarea,
+.has-error select {
+    border-color: #dc3545 !important;
+}

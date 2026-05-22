@@ -1,0 +1,27 @@
+{% block form_row %}
+    {% set classString = 'form-group' %}
+    {% if errors|length > 0 %}
+        {% set classString = classString ~ ' has-error' %}
+    {% endif %}
+    {% if row_attr.class is defined %}
+        {% set classString = classString ~ ' ' ~ row_attr.class %}
+    {% endif %}
+    <div class="{{ classString }}"
+        {% for attrname, attrvalue in row_attr %}
+            {{ attrname != 'class'? attrname ~ ' ="' ~ attrvalue ~ '"':'' }}
+        {% endfor %}>
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{% endblock form_row %}
+
+{% block form_errors %}
+    {% if errors|length > 0 %}
+        <ul class="form-errors">
+            {% for error in errors %}
+                <li>{{ error.message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock form_errors %}
