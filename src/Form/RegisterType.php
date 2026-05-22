@@ -25,7 +25,8 @@ class RegisterType extends AbstractType
                 'type' => PasswordType::class,
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmation mot de passe']
+                'second_options' => ['label' => 'Confirmation mot de passe'],
+                'invalid_message' => 'Les mots de passe ne correspondent pas'
             ])
             ->add('check', CheckboxType::class, [
                 'label' => "J'accepte les CGU de GreenGoodies",
