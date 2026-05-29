@@ -43,7 +43,7 @@ final class UserController extends AbstractController
         EntityManagerInterface $entityManager, 
         UserPasswordHasherInterface $hasher,
         Security $security
-        ): Response {
+    ): Response {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
 
