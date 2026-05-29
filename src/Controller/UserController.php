@@ -7,6 +7,7 @@ use App\Form\RegisterType;
 use App\Service\CalculationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -37,8 +38,12 @@ final class UserController extends AbstractController
     }
 
     #[Route('/new', name: '_create')]
-    public function create(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $hasher): Response
-    {
+    public function create(
+        Request $request, 
+        EntityManagerInterface $entityManager, 
+        UserPasswordHasherInterface $hasher,
+        Security $security
+        ): Response {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
 
@@ -50,7 +55,9 @@ final class UserController extends AbstractController
                 $user->setPassword($hasher->hashPassword($user, $user->getPassword()));
                 $entityManager->persist($user);
                 $entityManager->flush();
-                return $this->redirectToRoute('app_login');
+                
+                $security->login($user);
+                return $this->redirectToRoute('app_home');
             }
         }
 
