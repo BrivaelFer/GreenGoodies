@@ -124,11 +124,16 @@ form input {
     align-items: center;
 }
 
+.product-card > footer {
+    padding-top: 25px;
+}
+
 .product-card-info > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px
+    gap: 25px;
+    margin-bottom: 25px;
 }
 
 .product-card-info h3 {
@@ -140,6 +145,12 @@ form input {
     font-weight: 400;
     text-align: center;
     padding: 25px 0;
+}
+
+.product-card > footer > a:hover
+{
+    background: #565656;
+    color: white;
 }
 
 .product-card-desc {
@@ -491,4 +502,8 @@ form input {
 .has-error textarea,
 .has-error select {
     border-color: #dc3545 !important;
+}
+
+.alert-danger {
+    color: #dc3545;
 }
