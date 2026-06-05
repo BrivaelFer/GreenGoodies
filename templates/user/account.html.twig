@@ -19,11 +19,13 @@
                 </thead>
                 <tbody>
                     {% for command in commands %}
+                        {% if command.status == 'validated' %}
                         <tr>
                             <td>{{ command.id }}</td>
                             <td>{{ command.creationDate|date('d/m/Y') }}</td>
                             <td>{{ totals[command.id]|number_format(2, ',', '.') }}</td>
                         </tr>
+                        {% endif %}
                     {% endfor %}
                 </tbody>
                 

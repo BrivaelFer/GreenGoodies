@@ -9,6 +9,7 @@ use App\Service\CalculationService;
 use App\Service\Command\CommandReaderService;
 use App\Service\Command\CommandWriterService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
@@ -22,7 +23,8 @@ final class CommandController extends AbstractController
     public function showActiveCommand(
         #[CurrentUser]User $user, 
         CommandReaderService $commandReader, 
-        CalculationService $calculationService
+        CalculationService $calculationService,
+        Request $request
     ): Response 
     {
         $command = $commandReader->getUserActiveCommand($user);
@@ -34,7 +36,8 @@ final class CommandController extends AbstractController
         
         return $this->render('command/index.html.twig', [
             'command' => $command,
-            'totals' => $totals
+            'totals' => $totals,
+            'validated' => $request->query->get('validated') === 'true'
         ]);
     }
     
@@ -51,7 +54,7 @@ final class CommandController extends AbstractController
     {
         $commandWriter->validateCommand($command, $user);
 
-        return $this->redirectToRoute('app_command');
+        return $this->redirectToRoute('app_command', ['validated' => 'true']);
     }
 
     #[Route('/command/delete/{id}', name: 'app_command_delete')]
