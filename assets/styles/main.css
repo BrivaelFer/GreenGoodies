@@ -57,6 +57,7 @@ form input {
     width: 100%;
     height: 67px;
     border: 1px solid #666666;
+    font-size: 16px;
 }
 
 .intro {
@@ -144,12 +145,12 @@ form input {
     width: 100%;
     font-weight: 400;
     text-align: center;
-    padding: 25px 0;
+    padding: 30px 0;
 }
 
 .product-card > footer > a:hover
 {
-    background: #565656;
+    background: black;
     color: white;
 }
 
