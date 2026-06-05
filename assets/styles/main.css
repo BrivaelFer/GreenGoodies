@@ -342,6 +342,10 @@ form input {
     width: 604px;
 }
 
+.command-total {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
 .product-list {
     display: flex;
     flex-direction: column;
